@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { startLoading } from './TopProgress';
 
 const Stat = ({ title, value, delta, icon }) => (
   <div className="card kpi-card">
@@ -77,6 +78,8 @@ export default function DashboardTab() {
           </div>
         </div>
       </header>
+    
+
 
       {/* Tabs: horizontal on desktop, stacked on mobile */}
       <section className="mb-6">
@@ -86,7 +89,7 @@ export default function DashboardTab() {
               key={s.title}
               role="tab"
               aria-selected={selected === s.title}
-              onClick={() => setSelected(s.title)}
+              onClick={() => { startLoading(); setSelected(s.title); setTimeout(() => { /* simulate quick load */ }, 250); }}
               className={`tab-button ${selected === s.title ? 'active' : ''}`}
             >
               <div className="tab-left">
@@ -98,11 +101,15 @@ export default function DashboardTab() {
           ))}
         </div>
       </section>
-
+  <br></br>
+      <br></br>
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
           <ChartPlaceholder title={`${selected} — Trend`} />
         </div>
+        <br></br>
+      <br></br>
+
         <div>
           <div className="card">
             <div className="flex items-center justify-between mb-4">

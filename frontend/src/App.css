@@ -318,5 +318,28 @@ input[type="text"] { border: 0; outline: none; background: transparent; }
 }
 
 
+/* Top linear progress (Facebook-style) */
+.top-progress-root{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px; /* final height when visible; inline style will animate to 0 when hidden */
+  z-index: 80; /* sit above navbar (navbar z-index:60) */
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+.top-progress-bar{
+  height: 3px;
+  background: linear-gradient(90deg, rgba(99,102,241,0.95), rgba(99,102,241,0.7));
+  box-shadow: 0 2px 6px rgba(99,102,241,0.08);
+  will-change: width;
+}
+.dark .top-progress-bar{
+  background: linear-gradient(90deg, rgba(124,58,237,0.95), rgba(99,102,241,0.65));
+}
+
+
 
 

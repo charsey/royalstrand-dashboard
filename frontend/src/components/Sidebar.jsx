@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { startLoading } from './TopProgress';
 
 const Icon = ({ name, className = 'icon-svg' }) => {
   const size = '20';
@@ -21,7 +23,6 @@ const Icon = ({ name, className = 'icon-svg' }) => {
 };
 
 export default function Sidebar({ open = false, onClose = () => {} }) {
-  const [active, setActive] = useState('dashboard');
 
   useEffect(() => {
     // lock body scroll when sidebar open on small screens
@@ -58,14 +59,14 @@ export default function Sidebar({ open = false, onClose = () => {} }) {
             <ul className="sidebar-list">
               {items.map(it => (
                 <li key={it.key}>
-                  <button
-                    className={`sidebar-link ${active === it.key ? 'active' : ''}`}
-                    onClick={() => { setActive(it.key); if (window.innerWidth < 1024) onClose(); }}
-                    aria-current={active === it.key ? 'page' : undefined}
+                  <NavLink
+                    to={`/${it.key === 'dashboard' ? '' : it.key}`}
+                    className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+                    onClick={() => { startLoading(); if (window.innerWidth < 1024) onClose(); }}
                   >
                     <span className="sidebar-icon">{it.icon}</span>
                     <span className="sidebar-label">{it.label}</span>
-                  </button>
+                  </NavLink>
                 </li>
               ))}
             </ul>
