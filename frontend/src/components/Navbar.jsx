@@ -56,7 +56,6 @@ export default function Navbar({ onToggleSidebar }) {
           </button>
           <div className="rs-logo-wrap">
             {/* <img className="rs-logo" src="" alt="Logo" /> */}
-            <span className="rs-brand">RoyalStrand</span>
           </div>
           </div>
 
